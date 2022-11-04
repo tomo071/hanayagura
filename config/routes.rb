@@ -1,21 +1,16 @@
 Rails.application.routes.draw do
   
   namespace :admin do
-    get 'events/new'
-    get 'events/index'
-    get 'events/edit'
+    resources :events, only: [:new, :index, :edit]
+    resources :contributions, only: [:index, :show]
   end
-  get 'events/index'
-  namespace :admin do
-    get 'contributions/index'
-    get 'contributions/show'
-  end
+  
   namespace :user do
-    get 'contributions/new'
-    get 'contributions/index'
-    get 'contributions/show'
-    get 'contributions/edit'
+    resources :contributions, only: [:new, :index, :show, :edit]
   end
+  
+  get 'events/index'
+  
   devise_for :users, skip: [:passwords],controllers:{
     registrations: "user/registrations",
     sessions: 'user/sessions'
@@ -23,6 +18,7 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
   }
+  
   root 'homes#top'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
