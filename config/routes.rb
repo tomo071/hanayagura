@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   
   namespace :admin do
+    get 'events/new'
+    get 'events/index'
+    get 'events/edit'
+  end
+  get 'events/index'
+  namespace :admin do
     get 'contributions/index'
     get 'contributions/show'
   end
