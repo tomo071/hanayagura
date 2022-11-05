@@ -13,11 +13,18 @@ class Admin::EventsController < ApplicationController
   end
 
   def edit
+    @event = Event.find(params[:id])
+  end
+  
+  def destroy
+    @event = Event.find(params[:id])
+    @event.delete
+    
   end
 
   private
 
-  def event_parameter
+  def event_params
     params.require(:event).permit(:title, :content, :start_time)
   end
 end
