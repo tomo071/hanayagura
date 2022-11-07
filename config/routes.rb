@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :contributions, only: [:new, :index, :show, :edit]
   end
   
-  get 'events/index'
+  resources :events, only: [:index, :show] 
   
   devise_for :users, skip: [:passwords],controllers:{
     registrations: "user/registrations",
